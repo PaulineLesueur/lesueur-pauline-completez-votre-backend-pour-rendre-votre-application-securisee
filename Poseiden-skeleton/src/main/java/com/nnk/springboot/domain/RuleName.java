@@ -21,7 +21,11 @@ public class RuleName {
     private String description;
     private String json;
     private String template;
+
+    @Column(name = "sqlStr" )
     private String sqlStr;
+
+    @Column(name = "sqlPart" )
     private String sqlPart;
 
 }
