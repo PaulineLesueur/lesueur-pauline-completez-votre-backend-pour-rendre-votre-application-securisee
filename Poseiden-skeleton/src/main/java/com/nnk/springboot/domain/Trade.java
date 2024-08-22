@@ -19,7 +19,7 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="TradeId")
-    private Integer tradeId;
+    private Integer id;
 
     @NotBlank(message = "Account is mandatory")
     private String account;
