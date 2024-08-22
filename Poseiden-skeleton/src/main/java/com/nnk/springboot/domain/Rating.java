@@ -31,6 +31,6 @@ public class Rating {
     private String fitchRating;
 
     @Column(name = "orderNumber" )
-    private Integer orderNumber;
+    private Integer order;
 
 }
