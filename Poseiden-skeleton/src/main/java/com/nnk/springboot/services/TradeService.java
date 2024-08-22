@@ -3,6 +3,7 @@ package com.nnk.springboot.services;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,13 @@ public class TradeService {
 
     public Trade findById(int id) { return tradeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid trade Id:" + id)); }
 
+    @Transactional
     public Trade createTrade(Trade trade) {
         trade.setTradeDate(new Timestamp(System.currentTimeMillis()));
         return tradeRepository.save(trade);
     }
 
+    @Transactional
     public Trade updateTrade(Trade trade, int id) {
         Trade updatedTrade = findById(id);
         updatedTrade.setAccount(trade.getAccount());
@@ -33,6 +36,7 @@ public class TradeService {
         return tradeRepository.save(updatedTrade);
     }
 
+    @Transactional
     public void deleteById(int id) {
         tradeRepository.deleteById(id);
     }

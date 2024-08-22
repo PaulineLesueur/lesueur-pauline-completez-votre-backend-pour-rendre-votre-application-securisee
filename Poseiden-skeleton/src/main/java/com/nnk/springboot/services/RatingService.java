@@ -2,6 +2,7 @@ package com.nnk.springboot.services;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,12 @@ public class RatingService {
 
     public Rating findById(int id) { return ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id)); }
 
+    @Transactional
     public Rating createRating(Rating rating) {
         return ratingRepository.save(rating);
     }
 
+    @Transactional
     public Rating updateCurvePoint(Rating rating, int id) {
         Rating updatedRating = findById(id);
         updatedRating.setMoodysRating(rating.getMoodysRating());
@@ -31,6 +34,7 @@ public class RatingService {
         return ratingRepository.save(updatedRating);
     }
 
+    @Transactional
     public void deleteById(int id) {
         ratingRepository.deleteById(id);
     }

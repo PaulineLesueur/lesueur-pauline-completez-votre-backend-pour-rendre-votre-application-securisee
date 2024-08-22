@@ -2,6 +2,7 @@ package com.nnk.springboot.services;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,13 @@ public class CurvePointService {
 
     public CurvePoint findById(int id) { return curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id)); }
 
+    @Transactional
     public CurvePoint createCurvePoint(CurvePoint curvePoint) {
         curvePoint.setCreationDate(new Timestamp(System.currentTimeMillis()));
         return curvePointRepository.save(curvePoint);
     }
 
+    @Transactional
     public CurvePoint updateCurvePoint(CurvePoint curvePoint, int id) {
         CurvePoint updatedCurvePoint = findById(id);
         updatedCurvePoint.setTerm(curvePoint.getTerm());
@@ -32,6 +35,7 @@ public class CurvePointService {
         return curvePointRepository.save(updatedCurvePoint);
     }
 
+    @Transactional
     public void deleteById(int id) {
         curvePointRepository.deleteById(id);
     }
