@@ -23,7 +23,7 @@ public class RuleName {
     private String template;
 
     @Column(name = "sqlStr" )
-    private String sqlStr;
+    private String sql;
 
     @Column(name = "sqlPart" )
     private String sqlPart;
