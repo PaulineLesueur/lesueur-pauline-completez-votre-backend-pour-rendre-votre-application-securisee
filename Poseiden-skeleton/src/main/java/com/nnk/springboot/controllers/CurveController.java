@@ -16,7 +16,6 @@ import javax.validation.Valid;
 
 @Controller
 public class CurveController {
-    // TODO: Inject Curve Point service
     @Autowired
     private CurvePointService curvePointService;
 
