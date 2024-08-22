@@ -15,7 +15,6 @@ import javax.validation.Valid;
 
 @Controller
 public class RuleNameController {
-    // TODO: Inject RuleName service
     @Autowired
     private RuleNameService ruleNameService;
 
