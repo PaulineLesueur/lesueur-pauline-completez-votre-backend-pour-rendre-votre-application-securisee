@@ -15,7 +15,6 @@ import javax.validation.Valid;
 
 @Controller
 public class TradeController {
-    // TODO: Inject Trade service
     @Autowired
     private TradeService tradeService;
 
