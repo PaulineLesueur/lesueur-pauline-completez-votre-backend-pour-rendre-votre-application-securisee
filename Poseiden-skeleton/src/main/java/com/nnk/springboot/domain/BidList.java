@@ -19,7 +19,7 @@ public class BidList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "BidListId")
-    private Integer BidListId;
+    private Integer id;
 
     @NotBlank(message = "Account is mandatory")
     private String account;

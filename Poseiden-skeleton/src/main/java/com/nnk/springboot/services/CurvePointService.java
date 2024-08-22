@@ -27,7 +27,6 @@ public class CurvePointService {
 
     public CurvePoint updateCurvePoint(CurvePoint curvePoint, int id) {
         CurvePoint updatedCurvePoint = findById(id);
-        updatedCurvePoint.setCurveId(curvePoint.getCurveId());
         updatedCurvePoint.setTerm(curvePoint.getTerm());
         updatedCurvePoint.setValue(curvePoint.getValue());
         return curvePointRepository.save(updatedCurvePoint);
