@@ -1,4 +1,4 @@
-<h1>Poseidon Capital Solutiosn</h1>
+<h1>Poseidon Capital Solutions</h1>
 <hr />
 <em>Open Classrooms Project 7 - "Complétez votre backend pour rendre votre application plus sécurisée"</em>
 
