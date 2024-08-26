@@ -27,7 +27,8 @@ public class SpringSecurityConfig {
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(form ->
-                        form.defaultSuccessUrl("/bidList/list"))
+                        form
+                                .defaultSuccessUrl("/bidList/list"))
                 .logout(logoutConfigurer -> {
                     logoutConfigurer
                             .logoutUrl("/app-logout")

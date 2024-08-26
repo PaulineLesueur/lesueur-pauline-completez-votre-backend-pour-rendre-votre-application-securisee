@@ -1,27 +1,16 @@
-# spring-boot
-## Technical:
+<h1>Poseidon Capital Solutiosn</h1>
+<hr />
+<em>Open Classrooms Project 7 - "Complétez votre backend pour rendre votre application plus sécurisée"</em>
 
-1. Spring Boot 3.1.0
-2. Java 17
-3. Thymeleaf
-4. Bootstrap v.4.3.1
+<a href="doc/data.sql">Script.sql</a>
 
+Once the database created and the application launched, you should be able to access the application at http://localhost:8080 and login with the following account
 
-## Setup with Intellij IDE
-1. Create project from Initializr: File > New > project > Spring Initializr
-2. Add lib repository into pom.xml
-3. Add folders
-    - Source root: src/main/java
-    - View: src/main/resources
-    - Static: src/main/resource/static
-4. Create database with name "demo" as configuration in application.properties
-5. Run sql script to create table doc/data.sql
+username : user<br />
+password : user
 
-## Implement a Feature
-1. Create mapping domain class and place in package com.nnk.springboot.domain
-2. Create repository class and place in package com.nnk.springboot.repositories
-3. Create controller class and place in package com.nnk.springboot.controllers
+or
 
-## Security
-1. Create user service to load user from  database and place in package com.nnk.springboot.services
-2. Add configuration class and place in package com.nnk.springboot.config
+username : admin<br />
+password : admin<br />
+With this account, you'll be able to access the http://localhost:8080/user/list url and manage the accounts (create a new one, edit or delete)
