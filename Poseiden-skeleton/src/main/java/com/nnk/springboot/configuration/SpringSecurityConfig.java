@@ -22,9 +22,19 @@ public class SpringSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("/style/**").permitAll();
+                    auth.requestMatchers("/user/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
-                .formLogin(Customizer.withDefaults())
+                .formLogin(form ->
+                        form.defaultSuccessUrl("/bidList/list"))
+                .logout(logoutConfigurer -> {
+                    logoutConfigurer
+                            .logoutUrl("/app-logout")
+                            .logoutSuccessUrl("/login")
+                            .invalidateHttpSession(true)
+                            .deleteCookies("JSESSIONID");
+                })
                 .build();
     }
 
