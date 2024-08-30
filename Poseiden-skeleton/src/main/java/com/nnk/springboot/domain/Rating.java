@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -31,6 +32,7 @@ public class Rating {
     private String fitchRating;
 
     @Column(name = "orderNumber" )
+    @Min(value = 0, message = "Must be positive")
     private Integer order;
 
 }

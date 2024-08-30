@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
@@ -28,15 +29,19 @@ public class Trade {
     private String type;
 
     @Column(name = "buyQuantity" )
+    @Min(value = 0, message = "Must be positive")
     private Double buyQuantity;
 
     @Column(name = "sellQuantity" )
+    @Min(value = 0, message = "Must be positive")
     private Double sellQuantity;
 
     @Column(name = "buyPrice" )
+    @Min(value = 0, message = "Must be positive")
     private Double buyPrice;
 
     @Column(name = "sellPrice" )
+    @Min(value = 0, message = "Must be positive")
     private Double sellPrice;
 
     @Column(name = "tradeDate" )

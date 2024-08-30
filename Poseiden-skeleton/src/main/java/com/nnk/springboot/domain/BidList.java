@@ -27,12 +27,18 @@ public class BidList {
     @NotBlank(message = "Type is mandatory")
     private String type;
 
+    @Min(value = 0, message = "Must be positive")
     @Column(name = "bidQuantity" )
     private Double bidQuantity;
 
+    @Min(value = 0, message = "Must be positive")
     @Column(name = "askQuantity" )
     private Double askQuantity;
+
+    @Min(value = 0, message = "Must be positive")
     private Double bid;
+
+    @Min(value = 0, message = "Must be positive")
     private Double ask;
     private String benchmark;
 

@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
+
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -24,7 +26,11 @@ public class CurvePoint {
 
     @Column(name = "asOfDate" )
     private Timestamp asOfDate;
+
+    @Min(value = 0, message = "Must be positive")
     private Double term;
+
+    @Min(value = 0, message = "Must be positive")
     private Double value;
 
     @Column(name = "creationDate" )
