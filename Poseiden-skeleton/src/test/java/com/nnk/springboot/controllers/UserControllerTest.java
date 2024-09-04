@@ -17,6 +17,10 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = UserController.class)
 public class UserControllerTest {
@@ -33,16 +37,16 @@ public class UserControllerTest {
         when(userRepository.findAll()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/user/list"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("user/list"))
-                .andExpect(MockMvcResultMatchers.model().attribute("users", Collections.emptyList()));
+                .andExpect(model().attribute("users", Collections.emptyList()));
     }
 
     @Test
     @WithMockUser
     public void testAddUserForm() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/user/add"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("user/add"));
     }
 
@@ -53,11 +57,11 @@ public class UserControllerTest {
         when(userRepository.save(any(User.class))).thenReturn(user);
         when(userRepository.findAll()).thenReturn(Collections.singletonList(user));
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user/validate")
-                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+        mockMvc.perform(post("/user/validate")
+                        .with(csrf())
                         .param("username", "testUser")
                         .param("password", "password"))
-                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andExpect(status().isFound())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"));
     }
 
@@ -68,9 +72,9 @@ public class UserControllerTest {
         when(userRepository.findById(anyInt())).thenReturn(Optional.of(user));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/user/update/1"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("user/update"))
-                .andExpect(MockMvcResultMatchers.model().attribute("user", user));
+                .andExpect(model().attribute("user", user));
     }
 
     @Test
@@ -80,11 +84,11 @@ public class UserControllerTest {
         when(userRepository.save(any(User.class))).thenReturn(user);
         when(userRepository.findAll()).thenReturn(Collections.singletonList(user));
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user/update/1")
-                        .with(SecurityMockMvcRequestPostProcessors.csrf())
+        mockMvc.perform(post("/user/update/1")
+                        .with(csrf())
                         .param("username", "updatedUser")
                         .param("password", "newPassword"))
-                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andExpect(status().isFound())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"));
     }
 
@@ -95,7 +99,7 @@ public class UserControllerTest {
         when(userRepository.findById(anyInt())).thenReturn(Optional.of(user));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/user/delete/1"))
-                .andExpect(MockMvcResultMatchers.status().isFound())
+                .andExpect(status().isFound())
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/user/list"));
 
         verify(userRepository, times(1)).delete(user);
