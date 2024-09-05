@@ -42,7 +42,6 @@ public class BidListService {
      * @param bid the BidList object to create.
      * @return the BidList object that has been created and saved to the database.
      */
-    @Transactional
     public BidList createBidList(BidList bid) {
         bid.setCreationDate(new Timestamp(System.currentTimeMillis()));
         return bidListRepository.save(bid);
@@ -56,7 +55,6 @@ public class BidListService {
      * @return the updated BidList object saved to the database.
      * @throws IllegalArgumentException if the provided ID does not match any object in the database.
      */
-    @Transactional
     public BidList updateBidList(BidList bid, int id) {
         BidList updatedBidList = findById(id);
         updatedBidList.setAccount(bid.getAccount());
@@ -70,7 +68,6 @@ public class BidListService {
      *
      * @param id the ID of the BidList object to delete.
      */
-    @Transactional
     public void deleteById(int id) {
         bidListRepository.deleteById(id);
     }

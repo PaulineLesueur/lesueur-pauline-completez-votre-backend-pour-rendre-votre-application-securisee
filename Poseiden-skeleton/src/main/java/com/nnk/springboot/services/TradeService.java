@@ -42,7 +42,6 @@ public class TradeService {
      * @param trade the Trade object to create.
      * @return the created and saved Trade object.
      */
-    @Transactional
     public Trade createTrade(Trade trade) {
         trade.setTradeDate(new Timestamp(System.currentTimeMillis()));
         return tradeRepository.save(trade);
@@ -56,7 +55,6 @@ public class TradeService {
      * @return the updated and saved Trade object.
      * @throws IllegalArgumentException if the provided ID does not match any object in the database.
      */
-    @Transactional
     public Trade updateTrade(Trade trade, int id) {
         Trade updatedTrade = findById(id);
         updatedTrade.setAccount(trade.getAccount());
@@ -70,7 +68,6 @@ public class TradeService {
      *
      * @param id the ID of the Trade object to delete.
      */
-    @Transactional
     public void deleteById(int id) {
         tradeRepository.deleteById(id);
     }

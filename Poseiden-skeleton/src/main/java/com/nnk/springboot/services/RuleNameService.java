@@ -41,7 +41,6 @@ public class RuleNameService {
      * @param ruleName the RuleName object to create.
      * @return the created and saved RuleName object.
      */
-    @Transactional
     public RuleName createRuleName(RuleName ruleName) {
         return ruleNameRepository.save(ruleName);
     }
@@ -54,7 +53,6 @@ public class RuleNameService {
      * @return the updated and saved RuleName object.
      * @throws IllegalArgumentException if the provided ID does not match any object in the database.
      */
-    @Transactional
     public RuleName updateRuleName(RuleName ruleName, int id) {
         RuleName updatedRuleName = findById(id);
         updatedRuleName.setName(ruleName.getName());
@@ -71,7 +69,6 @@ public class RuleNameService {
      *
      * @param id the ID of the RuleName object to delete.
      */
-    @Transactional
     public void deleteById(int id) {
         ruleNameRepository.deleteById(id);
     }

@@ -42,7 +42,6 @@ public class CurvePointService {
      * @param curvePoint the CurvePoint object to create.
      * @return the created and saved CurvePoint object.
      */
-    @Transactional
     public CurvePoint createCurvePoint(CurvePoint curvePoint) {
         curvePoint.setCreationDate(new Timestamp(System.currentTimeMillis()));
         return curvePointRepository.save(curvePoint);
@@ -56,7 +55,6 @@ public class CurvePointService {
      * @return the updated and saved CurvePoint object.
      * @throws IllegalArgumentException if the provided ID does not match any object in the database.
      */
-    @Transactional
     public CurvePoint updateCurvePoint(CurvePoint curvePoint, int id) {
         CurvePoint updatedCurvePoint = findById(id);
         updatedCurvePoint.setTerm(curvePoint.getTerm());
@@ -69,7 +67,6 @@ public class CurvePointService {
      *
      * @param id the ID of the CurvePoint object to delete.
      */
-    @Transactional
     public void deleteById(int id) {
         curvePointRepository.deleteById(id);
     }

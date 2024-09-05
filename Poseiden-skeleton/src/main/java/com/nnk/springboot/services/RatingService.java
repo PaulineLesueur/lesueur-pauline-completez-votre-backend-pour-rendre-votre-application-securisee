@@ -41,7 +41,6 @@ public class RatingService {
      * @param rating the Rating object to create.
      * @return the created and saved Rating object.
      */
-    @Transactional
     public Rating createRating(Rating rating) {
         return ratingRepository.save(rating);
     }
@@ -54,7 +53,6 @@ public class RatingService {
      * @return the updated and saved Rating object.
      * @throws IllegalArgumentException if the provided ID does not match any object in the database.
      */
-    @Transactional
     public Rating updateCurvePoint(Rating rating, int id) {
         Rating updatedRating = findById(id);
         updatedRating.setMoodysRating(rating.getMoodysRating());
@@ -69,7 +67,6 @@ public class RatingService {
      *
      * @param id the ID of the Rating object to delete.
      */
-    @Transactional
     public void deleteById(int id) {
         ratingRepository.deleteById(id);
     }
